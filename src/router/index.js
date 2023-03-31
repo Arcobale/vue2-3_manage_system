@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from '@/components/Home';
 
 Vue.use(VueRouter);
 
@@ -8,7 +7,10 @@ export default new VueRouter({
     routes: [
         {
             path: '/home',
-            component: Home,
+            //路由懒加载
+            component: () => import('@/components/Home'),
+            //异步组件
+            // component: resolve => require(['@/components/Home'], resolve),
         },
         {
             path: '*',
