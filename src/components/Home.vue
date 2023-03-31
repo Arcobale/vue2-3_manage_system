@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <el-button type="primary">按钮</el-button>
+    <i class="fa fa-user"></i>
   </div>
 </template>
 

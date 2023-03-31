@@ -5,6 +5,7 @@ import App from './App.vue'
 // Vue.use(ElementUI);
 import './plugins/element'
 
+import 'font-awesome/css/font-awesome.min.css'
 Vue.config.productionTip = false
 
 new Vue({
