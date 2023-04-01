@@ -21,6 +21,7 @@
 
 <script>
 import { nameRule, passRule } from '@/utils/validate';
+import { setToken } from '@/utils/setToken';
 export default {
     data() {
         return {
@@ -69,4 +70,5 @@ export default {
             width: 100%;
         }
     }
-}</style>
+}
+</style>
