@@ -13,6 +13,10 @@ export default new VueRouter({
             // component: resolve => require(['@/components/Home'], resolve),
         },
         {
+            path: '/Home',
+            component: () => import('@/components/Home'),
+        },
+        {
             path: '*',
             redirect: '/login',
         }
