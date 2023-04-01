@@ -4,7 +4,11 @@
     <el-container class="content">
       <Menu></Menu>
       <el-container>
-        <el-main>Main</el-main>
+        <el-main>
+          <div class="cont">
+            <router-view></router-view>
+          </div>
+        </el-main>
         <el-footer>
           <Footer></Footer>
         </el-footer>
@@ -35,7 +39,9 @@ export default {
     width: 100%;
     top: 60px;
     bottom: 0;
-    background: pink;
+    .cont {
+      margin: 20px 0;
+    }
   }
 }
 </style>

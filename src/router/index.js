@@ -6,35 +6,25 @@ Vue.use(VueRouter);
 export default new VueRouter({
     routes: [
         {
+            path: '/',
+            redirect: '/login',
+            hidden: true,
+            component: () => import('@/components/Login'),
+        },
+        {
             path: '/login',
+            name: 'login',
+            hidden: true,
             //路由懒加载
             component: () => import('@/components/Login'),
             //异步组件
             // component: resolve => require(['@/components/Home'], resolve),
         },
         {
-            path: '/',
-            redirect: '/home',
-            component: () => import('@/components/Home'),
-        },
-        {
             path: '*',
             name: 'NotFound',
+            hidden: true,
             component: () => import('@/components/NotFound'),
-        },
-        {
-            path: '/users',
-            name: '用户中心',
-            iconClass: 'fa fa-user',
-            component: () => import('@/components/Home'),
-            children: [
-                {
-                    path: '/users/user',
-                    name: '权限管理',
-                    iconClass: 'fa fa-user',
-                    component: () => import('@/components/users/User'),
-                }
-            ]
         },
         {
             path: '/home',
@@ -84,7 +74,7 @@ export default new VueRouter({
                 {
                     path: '/home/dataview',
                     name: '数据概览',
-                    iconClass: 'fa fa-fa-chart',
+                    iconClass: 'fa fa-line-chart',
                     component: () => import('@/components/dataAnalysis/DataView')
                 },
                 {
@@ -105,6 +95,20 @@ export default new VueRouter({
                     iconClass: 'fa fa-line-chart',
                     component: () => import('@/components/dataAnalysis/ScoreMap')
                 },
+            ]
+        },
+        {
+            path: '/users',
+            name: '用户中心',
+            iconClass: 'fa fa-user',
+            component: () => import('@/components/Home'),
+            children: [
+                {
+                    path: '/users/user',
+                    name: '权限管理',
+                    iconClass: 'fa fa-user',
+                    component: () => import('@/components/users/User'),
+                }
             ]
         },
     ],
