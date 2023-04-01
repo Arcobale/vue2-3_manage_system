@@ -16,3 +16,11 @@ export function getStudentList() {
         url: '/students',
     })
 }
+
+//学生数据删除
+export function deleteStudent(id) {
+    return service({
+        method: 'delete',
+        url: `/students/${id}`,
+    })
+}

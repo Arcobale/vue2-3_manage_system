@@ -1,8 +1,7 @@
 <template>
   <div class="studentList">
-    <el-table 
-    :data="currentData" 
-    border style="width: 100%">
+    <!-- 内容展示区域 -->
+    <el-table :data="currentData" border style="width: 100%">
       <el-table-column prop="name" label="姓名">
       </el-table-column>
       <el-table-column prop="age" label="年龄">
@@ -20,19 +19,21 @@
       <el-table-column prop="phone" label="手机号">
       </el-table-column>
       <el-table-column label="操作">
-        <template>
-          <el-button type="danger" size="mini" icon="el-icon-delete"></el-button>
+        <template slot-scope="scope">
+          <el-button type="danger" size="mini" icon="el-icon-delete" @click="del(scope.row.id)"></el-button>
         </template>
       </el-table-column>
     </el-table>
+    <!-- 分页器 -->
     <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
-      :page-sizes="[5, 10, 20, 30, 50]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
+      :page-sizes="[5, 10, 20, 30, 50]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper"
+      :total="total">
     </el-pagination>
   </div>
 </template>
 
 <script>
-import { getStudentList } from '@/api/api';
+import { getStudentList, deleteStudent } from '@/api/api';
 export default {
   data() {
     return {
@@ -69,6 +70,14 @@ export default {
     },
     handleCurrentChange(val) {
       this.currentPage = val;
+    },
+    del(id) {
+      deleteStudent(id).then(res => {
+        if (res.data.status == 200) {
+          this.$message({ message: res.data.message, type: 'success' });
+          this.getData();
+        }
+      })
     }
   }
 }
