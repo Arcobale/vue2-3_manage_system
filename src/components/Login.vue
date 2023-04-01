@@ -20,29 +20,9 @@
 </template>
 
 <script>
+import { nameRule, passRule } from '@/utils/validate';
 export default {
     data() {
-        const validateName = (rule, value, callback) => {
-            let reg = /(^[a-zA-Z0-9]{4,10}$)/;
-            if (value === '') {
-                callback(new Error("请输入用户名"));
-            } else if (!reg.test(value)) {
-                callback(new Error("长度在4-10位字符之间"));
-            } else {
-                callback();
-            }
-        };
-        const validatePass = (rule, value, callback) => {
-            // 6-12位包含大小写字母、数字、特殊符号
-            let reg = /^\S*(?=\S{6,12})(?=\S*\d)(?=\S*[A-Z])(?=\S*[a-z])(?=\S*[!@#$%^&*? ])\S*$/;
-            if (value === '') {
-                callback(new Error("请输入密码"));
-            } else if (!reg.test(value)) {
-                callback(new Error("6-12位密码需要包含大小写字母、数字、特殊符号"));
-            } else {
-                callback();
-            }
-        };
         return {
             form: {
                 username: '',
@@ -50,12 +30,12 @@ export default {
             },
             rules: {
                 username: [
-                    {validator: validateName, trigger: 'blur'},
-                    {required: true}
+                    { validator: nameRule, trigger: 'blur' },
+                    { required: true }
                 ],
                 password: [
-                    {validator: validatePass, trigger: 'blur'},
-                    {required: true}
+                    { validator: passRule, trigger: 'blur' },
+                    { required: true }
                 ],
             }
         }
@@ -76,15 +56,17 @@ export default {
     height: 100%;
     position: absolute;
     background: #409Eff;
+
     .box-card {
         width: 450px;
         margin: 200px auto;
+
         .el-card__header {
             font-size: 34px;
         }
+
         .el-button {
             width: 100%;
         }
     }
-}
-</style>
+}</style>
