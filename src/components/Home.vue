@@ -5,6 +5,7 @@
       <Menu></Menu>
       <el-container>
         <el-main>
+          <Bread></Bread>
           <div class="cont">
             <router-view></router-view>
           </div>
@@ -21,11 +22,13 @@
 import Header from './common/Header.vue';
 import Footer from './common/Footer.vue';
 import Menu from './common/Menu.vue';
+import Bread from './common/Breadcrumb.vue';
 export default {
   components: {
     Header,
     Footer,
     Menu,
+    Bread,
   }
 }
 </script>
