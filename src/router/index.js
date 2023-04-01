@@ -18,8 +18,9 @@ export default new VueRouter({
         },
         {
             path: '*',
-            redirect: '/login',
-        }
+            name: 'NotFound',
+            component: () => import('@/components/NotFound'),
+        },
     ],
     mode: 'history',
 })

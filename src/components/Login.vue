@@ -66,11 +66,16 @@ export default {
     width: 100%;
     height: 100%;
     position: absolute;
-    background: #409Eff;
+    background: url('../assets/bg.jpg') center no-repeat;
 
     .box-card {
         width: 450px;
         margin: 200px auto;
+        background: #65768557;
+        color: #fff;
+        .el-form .el-form-item__label {
+            color: #fff;
+        }
 
         .el-card__header {
             font-size: 34px;
