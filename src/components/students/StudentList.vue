@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <el-table :data="studentList" border style="width: 100%">
+  <div class="studentList">
+    <el-table 
+    :data="currentData" 
+    border style="width: 100%">
       <el-table-column prop="name" label="姓名">
       </el-table-column>
       <el-table-column prop="age" label="年龄">
@@ -23,6 +25,9 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
+      :page-sizes="[5, 10, 20, 30, 50]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
+    </el-pagination>
   </div>
 </template>
 
@@ -32,6 +37,14 @@ export default {
   data() {
     return {
       studentList: [],
+      currentPage: 1,
+      pageSize: 10,
+      total: 0,
+    }
+  },
+  computed: {
+    currentData() {
+      return this.studentList.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize);
     }
   },
   mounted() {
@@ -46,12 +59,26 @@ export default {
             // 尽量不要修改原数据，添加新字段
             item.sex_text = item.sex == 1 ? "男" : "女";
             item.state_text = item.state == 1 ? "已入学" : item.state == 2 ? "未入学" : "休学中";
-          })
+          });
+          this.total = res.data.total;
         }
       });
+    },
+    handleSizeChange(val) {
+      this.pageSize = val;
+    },
+    handleCurrentChange(val) {
+      this.currentPage = val;
     }
   }
 }
 </script>
 
-<style></style>
+<style lang="scss">
+.studentList {
+  .el-pagination {
+    text-align: left;
+    margin-top: 20px;
+  }
+}
+</style>
