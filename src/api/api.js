@@ -8,3 +8,11 @@ export function login(data) {
         data,
     });
 }
+
+//获取学生列表
+export function getStudentList() {
+    return service({
+        method: 'get',
+        url: '/students',
+    })
+}
