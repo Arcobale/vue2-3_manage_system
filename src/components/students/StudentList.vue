@@ -1,5 +1,17 @@
 <template>
   <div class="studentList">
+    <!-- 查询、重置 -->
+    <el-form :inline="true" :model="formInline" class="demo-form-inline" size="small">
+      <el-form-item label="学生">
+        <el-input v-model="formInline.name" placeholder="请输入姓名查询"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="find">查询</el-button>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="reset">重置</el-button>
+      </el-form-item>
+    </el-form>
     <!-- 内容展示区域 -->
     <el-table :data="currentData" border style="width: 100%">
       <el-table-column prop="name" label="姓名">
@@ -33,7 +45,7 @@
 </template>
 
 <script>
-import { getStudentList, deleteStudent } from '@/api/api';
+import { getStudentList, deleteStudent, findStudent } from '@/api/api';
 export default {
   data() {
     return {
@@ -41,6 +53,9 @@ export default {
       currentPage: 1,
       pageSize: 10,
       total: 0,
+      formInline: {
+        name: '',
+      }
     }
   },
   computed: {
@@ -52,8 +67,8 @@ export default {
     this.getData();
   },
   methods: {
-    getData() {
-      getStudentList().then((res) => {
+    getData(params) {
+      getStudentList(params).then((res) => {
         if (res.data.status == 200) {
           this.studentList = res.data.data;
           this.studentList.forEach(item => {
@@ -62,7 +77,7 @@ export default {
             item.state_text = item.state == 1 ? "已入学" : item.state == 2 ? "未入学" : "休学中";
           });
           this.total = res.data.total;
-        }
+        };
       });
     },
     handleSizeChange(val) {
@@ -78,6 +93,13 @@ export default {
           this.getData();
         }
       })
+    },
+    find() {
+      this.getData(this.formInline);
+    },
+    reset() {
+      this.formInline = {},
+      this.getData(this.formInline);
     }
   }
 }
@@ -85,6 +107,9 @@ export default {
 
 <style lang="scss">
 .studentList {
+  .demo-form-inline {
+    text-align: left;
+  }
   .el-pagination {
     text-align: left;
     margin-top: 20px;
