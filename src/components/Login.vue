@@ -22,6 +22,7 @@
 <script>
 import { nameRule, passRule } from '@/utils/validate';
 import { setToken } from '@/utils/setToken';
+import { login } from '@/api/api';
 export default {
     data() {
         return {
@@ -45,8 +46,7 @@ export default {
         login(form) {
             this.$refs[form].validate((valid) => {
                 if (valid) {
-                    this.service.post('/login', this.form)
-                    .then(res => {
+                    login(this.form).then(res => {
                         if (res.data.status == 200) {
                             setToken('username', res.data.username);
                             setToken('token', res.data.token);
