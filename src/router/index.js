@@ -6,15 +6,15 @@ Vue.use(VueRouter);
 export default new VueRouter({
     routes: [
         {
-            path: '/home',
+            path: '/login',
             //路由懒加载
-            component: () => import('@/components/Home'),
+            component: () => import('@/components/Login'),
             //异步组件
             // component: resolve => require(['@/components/Home'], resolve),
         },
         {
             path: '*',
-            redirect: '/home',
+            redirect: '/login',
         }
     ],
     mode: 'history',
