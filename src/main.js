@@ -7,11 +7,13 @@ Vue.use(ElementUI);
 // import './plugins/element'
 
 import 'font-awesome/css/font-awesome.min.css'
-import axios from 'axios'
+// import axios from 'axios'
 import router from './router'
+import service from './service';
 
 //挂载到原型，可以全局使用
-Vue.prototype.axios = axios;
+// Vue.prototype.axios = axios;
+Vue.prototype.service = service;
 Vue.config.productionTip = false
 
 new Vue({

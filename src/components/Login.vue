@@ -44,7 +44,17 @@ export default {
     methods: {
         login(form) {
             this.$refs[form].validate((valid) => {
-                console.log(this.form);
+                if (valid) {
+                    this.service.post('/login', this.form)
+                    .then(res => {
+                        if (res.data.status == 200) {
+                            setToken('username', res.data.username);
+                            setToken('token', res.data.token);
+                            this.$message({message: res.data.message, type: 'success'});
+                            this.$router.push('/home');
+                        }
+                    });
+                }
             })
         }
     }
