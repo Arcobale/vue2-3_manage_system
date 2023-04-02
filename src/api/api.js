@@ -67,3 +67,11 @@ export function updateInfo(data) {
         data,
     })
 }
+
+//数据概览接口
+export function getDataView() {
+    return service({
+        method: 'get',
+        url: '/dataview',
+    })
+}
