@@ -27,7 +27,7 @@
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button type="danger" size="mini" icon="el-icon-edit" @click="edit(scope.row)"></el-button>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click="del(scope.row.id)"></el-button>
+          <el-button type="danger" size="mini" icon="el-icon-delete" @click="del(scope.row)"></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -117,11 +117,11 @@ export default {
         }
       })
     },
-    del(id) {
+    del(row) {
       this.$alert('你确定要删除吗', '提示', {
         confirmButtonClass: '确定',
         callback: () => {
-          deleteInfo(id).then(res => {
+          deleteInfo(row.id).then(res => {
             if (res.data.status == 200) {
               this.$message({ message: res.data.message, type: 'success' });
               this.getData();
