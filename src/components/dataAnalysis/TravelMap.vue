@@ -133,6 +133,18 @@ export default {
             zlevel: 2, //层级
             effect: {
               show: true,
+              period: 4,
+              symbol: 'arrow',
+              symbolSize: 7,
+              trailLength: 0.4,
+            },
+            lineStyle: {
+              normal: {
+                color: '#1DE9B6',
+                width: 1,
+                opacity: 0.1,
+                curveness: 0.3,
+              }
             },
             data: [{ coords: [[118.8062, 31.9208],[119.4543, 25.9222]], lineStyle: { color: '#4ab2e5' } }],
           }
