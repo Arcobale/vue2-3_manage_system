@@ -112,10 +112,12 @@ export default {
               }
             },
           },
+          //关于地图中散点图的配置
           {
             type: 'effectScatter', //带有涟漪特效动画的散点（气泡）图
             coordinateSystem: 'geo', //坐标系
             showEffectOn: 'render', //绘制完成显示特效
+            zlevel: 1,
             symbolSize: 10, //散点大小
             data: points,
             //涟漪特效相关配置
@@ -124,6 +126,15 @@ export default {
               scale: 4, //波纹的最大缩放比例
               brushType: 'fill', //波纹的绘制方式
             }
+          },
+          //关于地图中线路动画效果设置
+          {
+            type: 'lines',
+            zlevel: 2, //层级
+            effect: {
+              show: true,
+            },
+            data: [{ coords: [[118.8062, 31.9208],[119.4543, 25.9222]], lineStyle: { color: '#4ab2e5' } }],
           }
         ]
       };
