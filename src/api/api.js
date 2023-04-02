@@ -1,4 +1,6 @@
 import service from "@/service";
+//格式转换
+import qs from 'qs';
 
 //登录
 export function login(data) {
@@ -26,5 +28,42 @@ export function deleteStudent(id) {
     return service({
         method: 'delete',
         url: `/students/${id}`,
+    })
+}
+
+//获取信息列表
+export function getInfoList(params) {
+    return service({
+        method: 'get',
+        url: '/info',
+        params,
+    })
+}
+
+//信息数据删除
+export function deleteInfo(id) {
+    return service({
+        method: 'delete',
+        url: `/info/${id}`,
+    })
+}
+
+//信息数据新增
+export function addInfo(data) {
+    data = qs.stringify(data);
+    return service({
+        method: 'post',
+        url: '/info',
+        data,
+    })
+}
+
+//信息数据修改
+export function updateInfo(data) {
+    data = qs.stringify(data);
+    return service({
+        method: 'put',
+        url: '/info',
+        data,
     })
 }
