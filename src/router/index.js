@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-export default new VueRouter({
+const router = new VueRouter({
     routes: [
         {
             path: '/',
@@ -114,4 +114,19 @@ export default new VueRouter({
         },
     ],
     mode: 'history',
-})
+});
+
+//路由导航守卫
+router.beforeEach((to, from, next) => {
+    if (!localStorage.getItem('username')) {
+        if (to.path != '/login') {
+            next('/login');
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
+});
+
+export default router;
