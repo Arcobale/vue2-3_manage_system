@@ -64,6 +64,7 @@ export function getWorkList(root, url, params) {
                     item.completed_text = item.completed ? "是" : "否";
                 })
                 root.total = res.data.total;
+                root.loading = false;
             }
         })
         .catch(error => {
