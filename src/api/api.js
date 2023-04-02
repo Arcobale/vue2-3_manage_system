@@ -75,3 +75,11 @@ export function getDataView() {
         url: '/dataview',
     })
 }
+
+//旅游地图接口
+export function getTravelMap() {
+    return service({
+        method: 'get',
+        url: '/travel',
+    })
+}
