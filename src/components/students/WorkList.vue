@@ -38,10 +38,12 @@ export default {
     handleSizeChange(val) {
       this.size = val;
       this.page = 1;
+      this.loading = true;
       getWorkList(this, '/works', {page: this.page, size: this.size});
     },
     handleCurrentChange(val) {
       this.page = val;
+      this.loading = true;
       getWorkList(this, '/works', {page: this.page, size: this.size});
     },
   }
