@@ -17,14 +17,14 @@ export default {
     getTravelMap().then(res => {
       if (res.data.status == 200) {
         let { points, linesData } = res.data.data;
-        this.draw(points);
+        this.draw(points, linesData);
       }
     }).catch(error => {
       throw error;
     });
   },
   methods: {
-    draw(points) {
+    draw(points, linesData) {
       let myChart = this.$echarts.init(document.getElementById('main'));
       this.$echarts.registerMap('china', geoJson); //注册可用的地图
       let option = {
@@ -146,7 +146,7 @@ export default {
                 curveness: 0.3,
               }
             },
-            data: [{ coords: [[118.8062, 31.9208],[119.4543, 25.9222]], lineStyle: { color: '#4ab2e5' } }],
+            data: linesData,
           }
         ]
       };
