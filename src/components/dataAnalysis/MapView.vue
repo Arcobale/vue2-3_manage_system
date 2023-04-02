@@ -41,7 +41,10 @@ export default {
                 }
               ],
               globalCoord: true,
-            }
+            },
+            shadowColor: 'rgb(58, 115, 192)',
+            shadowOffsetX: 10,
+            shadowOffsetY: 10,
           }
         },
         regions: [{
@@ -52,6 +55,19 @@ export default {
       series: [
         {
           type: 'map',
+          label: {
+            normal: {
+              show: true, //label默认展示
+              textStyle: {
+                color: '#1DE9B6',
+              }
+            },
+            emphasis: {
+              textStyle: {
+                color: 'rgb(183, 185, 14)',
+              }
+            }
+          },
           zoom: 1.1,
           map: 'china',
           itemStyle: {
