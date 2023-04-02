@@ -1,4 +1,4 @@
-//封装表格操作
+//封装信息列表表格操作
 import qs from 'qs';
 // 获取
 export function getData(root, url, params) {
@@ -51,4 +51,22 @@ export function deleteData(root, url, id, callFun) {
             });
         }
     })
+}
+
+//封装作业列表表格操作
+//获取
+export function getWorkList(root, url, params) {
+    root.service.get(url, { params: params || {} })
+        .then(res => {
+            if (res.data.status == 200) {
+                root.workList = res.data.data;
+                root.workList.forEach(item => {
+                    item.completed_text = item.completed ? "是" : "否";
+                })
+                root.total = res.data.total;
+            }
+        })
+        .catch(error => {
+            throw error;
+        });
 }
